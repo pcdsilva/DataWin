@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2d8dc7ad03b141ba9cbbda841a6ea6d2" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseModel.alunos" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.cursos" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.matriculas" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.notas" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.professores" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.turmas" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseModel.FK__matricula__aluno__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__notas__alunos_id__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__turmas__cursos_i__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__matricula__turma__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__notas__turmas_id__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK__turmas__professo__31EC6D26" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

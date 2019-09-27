@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="alunos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefone" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="endereco" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="data_nascimento" Type="DateTime" Precision="0" />
+    <Property Name="cpf" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="matriculas" Relationship="Self.FK__matricula__aluno__35BCFE0A" FromRole="alunos" ToRole="matriculas" />
+    <NavigationProperty Name="notas" Relationship="Self.FK__notas__alunos_id__398D8EEE" FromRole="alunos" ToRole="notas" />
+  </EntityType>
+  <EntityType Name="cursos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="requisito" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="carga_horaria" Type="Int16" />
+    <Property Name="preco" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="turmas" Relationship="Self.FK__turmas__cursos_i__30F848ED" FromRole="cursos" ToRole="turmas" />
+  </EntityType>
+  <EntityType Name="matriculas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="turmas_id" Type="Int32" Nullable="false" />
+    <Property Name="alunos_id" Type="Int32" Nullable="false" />
+    <Property Name="data_matricula" Type="DateTime" Precision="0" />
+    <Property Name="valor_matricula" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="alunos" Relationship="Self.FK__matricula__aluno__35BCFE0A" FromRole="matriculas" ToRole="alunos" />
+    <NavigationProperty Name="turmas" Relationship="Self.FK__matricula__turma__34C8D9D1" FromRole="matriculas" ToRole="turmas" />
+  </EntityType>
+  <EntityType Name="notas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="turmas_id" Type="Int32" Nullable="false" />
+    <Property Name="alunos_id" Type="Int32" Nullable="false" />
+    <Property Name="valor_nota" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="alunos" Relationship="Self.FK__notas__alunos_id__398D8EEE" FromRole="notas" ToRole="alunos" />
+    <NavigationProperty Name="turmas" Relationship="Self.FK__notas__turmas_id__38996AB5" FromRole="notas" ToRole="turmas" />
+  </EntityType>
+  <EntityType Name="professores">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cargo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="titulacao" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="telefone" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="turmas" Relationship="Self.FK__turmas__professo__31EC6D26" FromRole="professores" ToRole="turmas" />
+  </EntityType>
+  <EntityType Name="turmas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="professores_id" Type="Int32" Nullable="false" />
+    <Property Name="cursos_id" Type="Int32" Nullable="false" />
+    <Property Name="carga_horaria" Type="Int16" />
+    <Property Name="data_inicio" Type="DateTime" Precision="0" />
+    <Property Name="data_final" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="cursos" Relationship="Self.FK__turmas__cursos_i__30F848ED" FromRole="turmas" ToRole="cursos" />
+    <NavigationProperty Name="matriculas" Relationship="Self.FK__matricula__turma__34C8D9D1" FromRole="turmas" ToRole="matriculas" />
+    <NavigationProperty Name="notas" Relationship="Self.FK__notas__turmas_id__38996AB5" FromRole="turmas" ToRole="notas" />
+    <NavigationProperty Name="professores" Relationship="Self.FK__turmas__professo__31EC6D26" FromRole="turmas" ToRole="professores" />
+  </EntityType>
+  <Association Name="FK__matricula__aluno__35BCFE0A">
+    <End Role="alunos" Type="Self.alunos" Multiplicity="1" />
+    <End Role="matriculas" Type="Self.matriculas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="alunos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="matriculas">
+        <PropertyRef Name="alunos_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__notas__alunos_id__398D8EEE">
+    <End Role="alunos" Type="Self.alunos" Multiplicity="1" />
+    <End Role="notas" Type="Self.notas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="alunos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="notas">
+        <PropertyRef Name="alunos_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__turmas__cursos_i__30F848ED">
+    <End Role="cursos" Type="Self.cursos" Multiplicity="1" />
+    <End Role="turmas" Type="Self.turmas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cursos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="turmas">
+        <PropertyRef Name="cursos_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__matricula__turma__34C8D9D1">
+    <End Role="turmas" Type="Self.turmas" Multiplicity="1" />
+    <End Role="matriculas" Type="Self.matriculas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="turmas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="matriculas">
+        <PropertyRef Name="turmas_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__notas__turmas_id__38996AB5">
+    <End Role="turmas" Type="Self.turmas" Multiplicity="1" />
+    <End Role="notas" Type="Self.notas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="turmas">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="notas">
+        <PropertyRef Name="turmas_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__turmas__professo__31EC6D26">
+    <End Role="professores" Type="Self.professores" Multiplicity="1" />
+    <End Role="turmas" Type="Self.turmas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="professores">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="turmas">
+        <PropertyRef Name="professores_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="alunos" EntityType="Self.alunos" />
+    <EntitySet Name="cursos" EntityType="Self.cursos" />
+    <EntitySet Name="matriculas" EntityType="Self.matriculas" />
+    <EntitySet Name="notas" EntityType="Self.notas" />
+    <EntitySet Name="professores" EntityType="Self.professores" />
+    <EntitySet Name="turmas" EntityType="Self.turmas" />
+    <AssociationSet Name="FK__matricula__aluno__35BCFE0A" Association="Self.FK__matricula__aluno__35BCFE0A">
+      <End Role="alunos" EntitySet="alunos" />
+      <End Role="matriculas" EntitySet="matriculas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__notas__alunos_id__398D8EEE" Association="Self.FK__notas__alunos_id__398D8EEE">
+      <End Role="alunos" EntitySet="alunos" />
+      <End Role="notas" EntitySet="notas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__turmas__cursos_i__30F848ED" Association="Self.FK__turmas__cursos_i__30F848ED">
+      <End Role="cursos" EntitySet="cursos" />
+      <End Role="turmas" EntitySet="turmas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__matricula__turma__34C8D9D1" Association="Self.FK__matricula__turma__34C8D9D1">
+      <End Role="turmas" EntitySet="turmas" />
+      <End Role="matriculas" EntitySet="matriculas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__notas__turmas_id__38996AB5" Association="Self.FK__notas__turmas_id__38996AB5">
+      <End Role="turmas" EntitySet="turmas" />
+      <End Role="notas" EntitySet="notas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__turmas__professo__31EC6D26" Association="Self.FK__turmas__professo__31EC6D26">
+      <End Role="professores" EntitySet="professores" />
+      <End Role="turmas" EntitySet="turmas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

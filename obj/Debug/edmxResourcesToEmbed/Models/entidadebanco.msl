@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_faculdademodelStoreContainer" CdmEntityContainer="db_faculdadeEntities">
+    <EntitySetMapping Name="alunos">
+      <EntityTypeMapping TypeName="db_faculdademodel.alunos">
+        <MappingFragment StoreEntitySet="alunos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="fone" ColumnName="fone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="endereco" ColumnName="endereco" />
+          <ScalarProperty Name="data_nascimento" ColumnName="data_nascimento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cursos">
+      <EntityTypeMapping TypeName="db_faculdademodel.cursos">
+        <MappingFragment StoreEntitySet="cursos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="requisito" ColumnName="requisito" />
+          <ScalarProperty Name="carga_horaria" ColumnName="carga_horaria" />
+          <ScalarProperty Name="preco" ColumnName="preco" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="matriculas">
+      <EntityTypeMapping TypeName="db_faculdademodel.matriculas">
+        <MappingFragment StoreEntitySet="matriculas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="data_matricula" ColumnName="data_matricula" />
+          <ScalarProperty Name="valor_matricula" ColumnName="valor_matricula" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="notas">
+      <EntityTypeMapping TypeName="db_faculdademodel.notas">
+        <MappingFragment StoreEntitySet="notas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Valor_nota" ColumnName="NM_NOTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="professores">
+      <EntityTypeMapping TypeName="db_faculdademodel.professores">
+        <MappingFragment StoreEntitySet="professores">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="cargo" ColumnName="cargo" />
+          <ScalarProperty Name="titulacao" ColumnName="titulacao" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="turmas">
+      <EntityTypeMapping TypeName="db_faculdademodel.turmas">
+        <MappingFragment StoreEntitySet="turmas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="professores_id" ColumnName="professores_id" />
+          <ScalarProperty Name="cursos_id" ColumnName="cursos_id" />
+          <ScalarProperty Name="carga_horaria" ColumnName="carga_horaria" />
+          <ScalarProperty Name="data_inicio" ColumnName="data_inicio" />
+          <ScalarProperty Name="data_final" ColumnName="data_final" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
